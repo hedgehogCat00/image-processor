@@ -1,0 +1,17 @@
+{
+  "name": "image-processor",
+  "version": "1.0.0",
+  "description": "this is a test project of process image using WebGL",
+  "main": "./dist/main.js",
+  "author": "hedgehog cat",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "typescript": "3.1",
+    "gulp": "4.0.0",
+    "gulp-typescript": "latest"
+  },
+  "scripts": {
+    "start": "npx gulp && node ./dist/main.js"
+  }
+}
