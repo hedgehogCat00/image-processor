@@ -1,0 +1,10 @@
+<div class="editor-container" [ngStyle]="{position: 'relative'}">
+    <textarea #textarea cols="30" rows="10" [ngStyle]="textareaStyle" (mouseup)="handleCode($event)" (keyup)="handleCode($event)"></textarea>
+    <div #cursorPos class="cursor-pos" cdkOverlayOrigin [ngStyle]="cursorStyle"></div>
+</div>
+
+<ng-template #selectTpl>
+    <mat-select>
+        <mat-option *ngFor="let opt of opts" [value]="opt">{{opt}}</mat-option>
+    </mat-select>
+</ng-template>
