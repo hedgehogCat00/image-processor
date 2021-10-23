@@ -1,0 +1,11 @@
+<h1>大晶分割</h1>
+
+<div>
+    <label for="image-ipt">加载图片</label>
+    <input id="image-ipt" type="file" (change)="loadImage($event)">
+</div>
+
+<div class="images-container">
+    <img *ngIf="sourceImageSrc" [src]="sourceImageSrc">
+    <canvas #distCanvas></canvas>
+</div>

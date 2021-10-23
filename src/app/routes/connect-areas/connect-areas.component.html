@@ -1,0 +1,11 @@
+<h1>连通分量</h1>
+
+<div>
+    <canvas #sourceCanvas></canvas>
+</div>
+<div>
+    <canvas #distCanvas></canvas>
+</div>
+<div>
+    <img *ngFor="let conn of conns" [src]="conn.src">
+</div>

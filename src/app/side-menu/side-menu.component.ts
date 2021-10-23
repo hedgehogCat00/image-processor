@@ -1,10 +1,10 @@
 import { FlatTreeControl } from '@angular/cdk/tree';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatTreeFlattener, MatTreeFlatDataSource } from '@angular/material/tree';
 
 interface NavNode {
   name: string;
-  link: string[];
+  link?: string[];
   children?: NavNode[];
 }
 
@@ -17,12 +17,34 @@ interface ExampleFlatNode {
 const TREE_DATA: NavNode[] = [{
   name: 'A*算法',
   link: ['/astar']
+}, {
+  name: '3D 场景',
+  children: [{
+    name: '延迟渲染',
+    link: ['three-d/deffered-rendering']
+  }]
+}, {
+  name: '连通分量',
+  link: ['/connect-area']
+}, {
+  name: '图像分割',
+  children: [{
+    name: '大晶分割',
+    link: ['/image-split/otsu']
+  }, {
+    name: '区域分裂与聚合',
+    link: ['/split-unite-region']
+  }, {
+    name: 'Canny边缘检测',
+    link: ['/image-split/canny']
+  },]
 }];
 
 @Component({
   selector: 'app-side-menu',
   templateUrl: './side-menu.component.html',
-  styleUrls: ['./side-menu.component.less']
+  styleUrls: ['./side-menu.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SideMenuComponent implements OnInit {
   private _transformer = (node: NavNode, level: number) => {
@@ -42,7 +64,7 @@ export class SideMenuComponent implements OnInit {
 
   dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
-  constructor() { 
+  constructor() {
     this.dataSource.data = TREE_DATA;
   }
 

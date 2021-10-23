@@ -1,0 +1,18 @@
+<h1>Canny边缘检测</h1>
+
+<div>
+    <label for="image-ipt">加载图片</label>
+    <input id="image-ipt" type="file" (change)="loadImage($event)">
+
+    <div>
+        <label for="thValIpt">高阈值</label>
+        <input id="thValIpt" type="number" [(ngModel)]="thVal">
+    </div>
+
+    <button [disabled]="!sourceImageSrc" (click)="load2Canvas()">计算</button>
+</div>
+
+<div class="images-container">
+    <img *ngIf="sourceImageSrc" [src]="sourceImageSrc">
+    <canvas #distCanvas></canvas>
+</div>

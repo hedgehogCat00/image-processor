@@ -1,0 +1,9 @@
+<mat-radio-group [(ngModel)]="renderMode">
+    <mat-radio-button value="foreward">前向渲染</mat-radio-button>
+    <mat-radio-button value="deffered">后向渲染</mat-radio-button>
+</mat-radio-group>
+
+<div class="canvas-container">
+    <canvas #webgl id="webgl"></canvas>
+    <canvas #rtPreview class="preview-canvas"></canvas>
+</div>

@@ -1,5 +1,6 @@
-<mat-sidenav-container [ngStyle]="{width: '100%', height: '100%'}">
-    <mat-sidenav mode="side" opened>
+<top-toolbar (btnClicked)="onSidenavToggled();sidenav.toggle();"></top-toolbar>
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav mode="side" opened [fixedBottomGap]="0">
         <app-side-menu></app-side-menu>
     </mat-sidenav>
     <mat-sidenav-content>
