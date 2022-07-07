@@ -341,7 +341,7 @@ export class WebGLDefferedRenderer {
             uniforms: uniforms,
             defines: defines,
             flatShading: oriMaterial.flatShading
-        });
+        } as any);
 
         let diffuse, emissive;
         if (oriMaterial instanceof THREE.MeshBasicMaterial) {

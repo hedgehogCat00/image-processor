@@ -29,6 +29,10 @@ const routes: Routes = [{
 			loadChildren: () => import('./routes/image-desc/image-desc.module').then(m => m.ImageDescModule)
 		},
 		{
+			path: 'opencv',
+			loadChildren: () => import('./routes/opencv/opencv.module').then(m => m.OpencvModule)
+		},
+		{
 			path: '', redirectTo: 'astar', pathMatch: 'full'
 		}
 	]

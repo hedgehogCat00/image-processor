@@ -1,0 +1,5 @@
+<label for="file-ipt">选择图片</label>
+<input id="file-ipt" type="file" (change)="loadImg($event)">
+
+<img #sourceImg [attr.src]="sourceImgSrc" (load)="sourceImgLoaded()">
+<canvas #outputCvs></canvas>

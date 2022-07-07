@@ -58,6 +58,12 @@ const TREE_DATA: NavNode[] = [
       name: 'Moore 边界描述',
       link: ['/image-desc/moore']
     }]
+  }, {
+    name: 'OpenCV',
+    children: [{
+      name: '角点检测',
+      link: ['opencv', 'corner-detect']
+    }]
   }];
 
 @Component({

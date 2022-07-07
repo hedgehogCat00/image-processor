@@ -25,7 +25,12 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "opencv_js.wasm",
+                "input": "src/assets/js",
+                "output": "/"
+              }
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
@@ -33,7 +38,9 @@
               "./node_modules/codemirror/lib/codemirror.css",
               "src/styles.less"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/opencv_js.js"
+            ]
           },
           "configurations": {
             "production": {

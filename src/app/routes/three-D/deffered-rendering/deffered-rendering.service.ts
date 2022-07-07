@@ -73,7 +73,8 @@ export class DefferedRenderingService {
 
   private projMatInv;
 
-  private stats = new Stats();
+  // private stats = new Stats();
+  private stats = Stats();
   private pause = false;
 
   rtPixels$ = new Subject<RTBuffer>();
