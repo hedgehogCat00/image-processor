@@ -54,7 +54,7 @@ export class DefferedRenderingComponent implements OnInit, AfterViewInit {
   }
 
   private initRTPreviewCanvas() {
-    const canvas = this.rtPreviewRef.nativeElement;
+    const canvas = this.rtPreviewRef.nativeElement as HTMLCanvasElement;
     const prevCtx = canvas.getContext('2d');
     this.compSrv.rtPixels$
       // .pipe(

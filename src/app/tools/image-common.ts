@@ -3,20 +3,113 @@ export function image2BW(source: ImageData) {
     const height = source.height;
 
     const result = new ImageData(width, height);
+    // for (let j = 0; j < height; j++) {
+    //     for (let i = 0; i < width; i++) {
+    //         const offset = j * 4 * width + i * 4;
+    //         const R = source.data[offset];
+    //         const G = source.data[offset + 1];
+    //         const B = source.data[offset + 2];
+    //         const val = (R * 299 + G * 587 + B * 144) / 1000;
+    //         result.data[offset] = val;
+    //         result.data[offset + 1] = val;
+    //         result.data[offset + 2] = val;
+    //         result.data[offset + 3] = 255;
+    //     }
+    // }
+    traverseImgDS(source, ({ offset }) => {
+        const R = source.data[offset];
+        const G = source.data[offset + 1];
+        const B = source.data[offset + 2];
+        const val = (R * 299 + G * 587 + B * 144) / 1000;
+        result.data[offset] = val;
+        result.data[offset + 1] = val;
+        result.data[offset + 2] = val;
+        result.data[offset + 3] = 255;
+    })
+    return result;
+}
+
+export function imgBWThreshold(source: ImageData, threshold: number, inverse = false) {
+    const width = source.width;
+    const height = source.height;
+
+    const result = new ImageData(width, height);
+    // for (let j = 0; j < height; j++) {
+    //     for (let i = 0; i < width; i++) {
+    //         const offset = j * 4 * width + i * 4;
+    //         const R = source.data[offset];
+    //         const val = R >= threshold ? 255 : 0;
+    //         result.data[offset] = val;
+    //         result.data[offset + 1] = val;
+    //         result.data[offset + 2] = val;
+    //         result.data[offset + 3] = 255;
+    //     }
+    // }
+    traverseImgDS(source, ({ offset }) => {
+        const R = source.data[offset];
+        let val;
+        if (inverse) {
+            val = R <= threshold ? 255 : 0;
+        } else {
+            val = R >= threshold ? 255 : 0;
+        }
+        result.data[offset] = val;
+        result.data[offset + 1] = val;
+        result.data[offset + 2] = val;
+        result.data[offset + 3] = 255;
+    })
+    return result;
+}
+
+export function traverseImgDS(source: ImageData, cb: (info: any) => void) {
+    const width = source.width;
+    const height = source.height;
+
+    const widthOffset = width * 4;
     for (let j = 0; j < height; j++) {
         for (let i = 0; i < width; i++) {
             const offset = j * 4 * width + i * 4;
-            const R = source.data[offset];
-            const G = source.data[offset + 1];
-            const B = source.data[offset + 2];
-            const val = (R * 299 + G * 587 + B * 144) / 1000;
-            result.data[offset] = val;
-            result.data[offset + 1] = val;
-            result.data[offset + 2] = val;
-            result.data[offset + 3] = 255;
+            let top = offset - widthOffset;
+            if (top < 0) { top = null; }
+
+            let bottom = offset + widthOffset;
+            if (j === height - 1) {
+                bottom = null;
+            }
+
+            let left = null;
+            if (i > 0) {
+                left = offset - 4;
+            }
+
+            let right = null;
+            if (i < width) {
+                right = offset + 4;
+            }
+
+            let topRight = null;
+            if (top !== null && right !== null) {
+                topRight = top + 4;
+            }
+
+            let topLeft = null;
+            if (top !== null && left !== null) {
+                topLeft = top - 4;
+            }
+
+            let bottomRight = null;
+            if (bottom !== null && right !== null) {
+                bottomRight = bottom + 4;
+            }
+
+            let bottomLeft = null;
+            if (bottom !== null && left !== null) {
+                bottomLeft = bottom - 4;
+            }
+
+            cb({ offset, top, topRight, right, bottomRight, bottom, bottomLeft, left, topLeft });
         }
     }
-    return result;
 }
 
 export function gaussian(source: ImageData, kernelSize: number = 9) {

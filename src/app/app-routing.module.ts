@@ -9,6 +9,10 @@ const routes: Routes = [{
 			loadChildren: () => import('./routes/astar/astar.module').then(m => m.AstarModule)
 		},
 		{
+			path: 'code-editor',
+			loadChildren: () => import('./routes/code-editor/code-editor.module').then(m => m.CodeEditorModule)
+		},
+		{
 			path: 'three-d',
 			loadChildren: () => import('./routes/three-D/three-d.module').then(m => m.ThreeDModule)
 		},
@@ -19,6 +23,10 @@ const routes: Routes = [{
 		{
 			path: 'split-unite-region',
 			loadChildren: () => import('./routes/split-unite-region/split-unite-region.module').then(m => m.SplitUniteRegionModule)
+		},
+		{
+			path: 'image-desc',
+			loadChildren: () => import('./routes/image-desc/image-desc.module').then(m => m.ImageDescModule)
 		},
 		{
 			path: '', redirectTo: 'astar', pathMatch: 'full'

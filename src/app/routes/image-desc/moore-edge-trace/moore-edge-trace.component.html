@@ -1,0 +1,6 @@
+<input #file type="file" (change)="loadImg($event)">
+<canvas #rawImg></canvas>
+<canvas #distImg></canvas>
+
+<p>Test click for {{count}} times</p>
+<button (click)="setCount(count+1)">Add Click Count</button>

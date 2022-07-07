@@ -511,9 +511,9 @@ export class WebGLDefferedRenderer {
     private emitRenderTarget(rt, rtType: string) {
         setTimeout(() => {
             const buffer = new Uint8Array(this.scaledWidth * this.scaledHeight * 4);
-            const gl = this.renderer.getContext();
-            gl.readPixels(0, 0, this.scaledWidth, this.scaledHeight, gl.RGBA, gl.UNSIGNED_BYTE, buffer);
-            // this.renderer.readRenderTargetPixels(rt, 0, 0, this.scaledWidth, this.scaledHeight, buffer);
+            // const gl = this.renderer.getContext();
+            // gl.readPixels(0, 0, this.scaledWidth, this.scaledHeight, gl.RGBA, gl.UNSIGNED_BYTE, buffer);
+            this.renderer.readRenderTargetPixels(rt, 0, 0, this.scaledWidth, this.scaledHeight, buffer);
             this.rtPixels$.next({
                 type: rtType,
                 buffer: buffer,
@@ -743,7 +743,7 @@ export class WebGLDefferedRenderer {
         stencilBuffer.setClear(0);
 
         this.compNormalDepth.render();
-        // this.emitRenderTarget(this.compNormalDepth.renderTarget2, 'compLight');
+        // this.emitRenderTarget(this.compNormalDepth.renderTarget2, 'compNormal');
 
         // return;
 
@@ -778,8 +778,8 @@ export class WebGLDefferedRenderer {
 
         scene.autoUpdate = true;
 
-        this.gl.depthFunc(this.gl.GEQUAL);
-        // this.gl.depthFunc(this.gl.LEQUAL);
+        // this.gl.depthFunc(this.gl.GEQUAL);
+        this.gl.depthFunc(this.gl.LEQUAL);
         // depthBuffer.setFunc(THREE.GreaterEqualDepth);
 
         // 更新全局逆投影矩阵
