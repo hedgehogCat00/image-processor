@@ -33,6 +33,10 @@ const routes: Routes = [{
 			loadChildren: () => import('./routes/opencv/opencv.module').then(m => m.OpencvModule)
 		},
 		{
+			path: 'procedual-anim',
+			loadChildren: () => import('./routes/procedural-anim/procedural-anim.module').then(m => m.ProceduralAnimModule)
+		},
+		{
 			path: '', redirectTo: 'astar', pathMatch: 'full'
 		}
 	]

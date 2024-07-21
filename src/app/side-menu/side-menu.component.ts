@@ -64,6 +64,12 @@ const TREE_DATA: NavNode[] = [
       name: '角点检测',
       link: ['opencv', 'corner-detect']
     }]
+  }, {
+    name: '程序化动画',
+    children: [{
+      name: '跟随骨骼',
+      link: ['procedual-anim/follow-bones']
+    }]
   }];
 
 @Component({

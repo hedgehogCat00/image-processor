@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve -o",
-    "build": "ng build",
+    "start": "SET NODE_OPTIONS=--openssl-legacy-provider && ng serve -o",
+    "build": "SET NODE_OPTIONS=--openssl-legacy-provider && ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "~10.2.0",
     "@angular/router": "~10.2.0",
     "codemirror": "5.63.3",
+    "delaunator": "5.0.1",
     "font-awesome": "^4.7.0",
     "opencv4js": "^3.4.3",
     "rxjs": "~6.6.0",

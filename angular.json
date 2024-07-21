@@ -39,7 +39,8 @@
               "src/styles.less"
             ],
             "scripts": [
-              "src/assets/js/opencv_js.js"
+              "src/assets/js/opencv_js.js",
+              "node_modules/three/build/three.min.js"
             ]
           },
           "configurations": {
